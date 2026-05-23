@@ -1,0 +1,20 @@
+# Core runtime
+flask>=3.0
+Pillow>=10.0
+pytesseract>=0.3.10
+
+# Optional ML path (LayoutLMv3) — large download, install only if needed
+# transformers>=4.40
+# torch>=2.1
+
+# Optional PDF support — needs system `poppler` binary
+# pdf2image>=1.17
+
+# Optional GPT-4V detector — needs OPENAI_API_KEY in env
+# openai>=1.30
+
+# Optional fast fuzzy matching (10-100x faster than the pure-Python fallback)
+# rapidfuzz>=3.5
+
+# Testing
+pytest>=8.0

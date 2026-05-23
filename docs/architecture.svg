@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 720" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333"/>
+    </marker>
+    <style>
+      .input  { fill: #eef3ff; stroke: #3a5fa8; stroke-width: 1.4; }
+      .pre    { fill: #f6f0ff; stroke: #6a4aa8; stroke-width: 1.4; }
+      .det    { fill: #fff2e8; stroke: #b86a2c; stroke-width: 1.4; }
+      .agg    { fill: #eaf5ee; stroke: #2c7a4a; stroke-width: 1.4; }
+      .out    { fill: #fbeaea; stroke: #a83a3a; stroke-width: 1.4; }
+      .label  { fill: #1a1a1a; font-size: 13px; }
+      .small  { fill: #555; font-size: 11px; }
+      .title  { fill: #101010; font-size: 14px; font-weight: 600; }
+      .arrow  { stroke: #333; stroke-width: 1.4; fill: none; marker-end: url(#arr); }
+      .badge  { font-size: 10px; font-weight: 700; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="20" y="30" font-size="20" font-weight="700" fill="#101010">InvoiceGuard — Pipeline</text>
+  <text x="20" y="50" class="small">VLM-powered invoice fraud detection · TreeHacks 2025</text>
+
+  <!-- Input -->
+  <rect class="input" x="20" y="80" width="200" height="74" rx="8"/>
+  <text class="title" x="32" y="104">1. Invoice upload</text>
+  <text class="label" x="32" y="124">PDF / JPEG / PNG</text>
+  <text class="small" x="32" y="142">multipart/form-data → Flask</text>
+
+  <!-- Preprocess -->
+  <rect class="pre" x="280" y="80" width="220" height="74" rx="8"/>
+  <text class="title" x="292" y="104">2. Preprocessing</text>
+  <text class="label" x="292" y="124">pdf2image · pytesseract OCR</text>
+  <text class="small" x="292" y="142">SHA-256 content hash</text>
+
+  <!-- LayoutLMv3 -->
+  <rect class="pre" x="560" y="80" width="220" height="74" rx="8"/>
+  <text class="title" x="572" y="104">3. Field extraction</text>
+  <text class="label" x="572" y="124">LayoutLMv3 (Microsoft)</text>
+  <text class="small" x="572" y="142">+ regex fallback path</text>
+
+  <!-- Detectors row label -->
+  <text x="20" y="210" class="badge" fill="#555">DETECTORS (parallel)</text>
+
+  <!-- GPT-4V -->
+  <rect class="det" x="20" y="220" width="220" height="120" rx="8"/>
+  <text class="title" x="32" y="244">GPT-4V vision</text>
+  <text class="small" x="32" y="262" font-weight="700" fill="#b86a2c">5 fraud classes:</text>
+  <text class="label" x="32" y="280">· FONT_INCONSISTENCY</text>
+  <text class="label" x="32" y="297">· LOGO_QUALITY</text>
+  <text class="label" x="32" y="314">· PIXEL_ARTIFACTS</text>
+  <text class="label" x="32" y="331">· ALIGNMENT_SHIFT / REDACTION</text>
+
+  <!-- ELA -->
+  <rect class="det" x="260" y="220" width="220" height="120" rx="8"/>
+  <text class="title" x="272" y="244">ELA (Error Level Analysis)</text>
+  <text class="label" x="272" y="264">JPEG re-compression diff</text>
+  <text class="label" x="272" y="282">→ heatmap of edited regions</text>
+  <text class="small" x="272" y="304" fill="#555">trigger:</text>
+  <text class="small" x="272" y="318">max_intensity ≥ 80</text>
+  <text class="small" x="272" y="332">high_pixel_frac ≥ 4%</text>
+
+  <!-- Duplicate -->
+  <rect class="det" x="500" y="220" width="200" height="120" rx="8"/>
+  <text class="title" x="512" y="244">Duplicate detector</text>
+  <text class="label" x="512" y="264">SHA-256 exact match</text>
+  <text class="label" x="512" y="282">+ fuzzy match:</text>
+  <text class="small" x="512" y="300">· vendor ≥ 85% similarity</text>
+  <text class="small" x="512" y="316">· total ± $0.01 (required)</text>
+  <text class="small" x="512" y="332">· date ± 30d (booster)</text>
+
+  <!-- Vendor -->
+  <rect class="det" x="720" y="220" width="200" height="120" rx="8"/>
+  <text class="title" x="732" y="244">Vendor verification</text>
+  <text class="label" x="732" y="264">EIN format + sentinel</text>
+  <text class="label" x="732" y="282">address validity</text>
+  <text class="label" x="732" y="300">directory lookup</text>
+  <text class="small" x="732" y="320">→ unknown / tax-id mismatch</text>
+
+  <!-- Aggregator -->
+  <rect class="agg" x="220" y="400" width="500" height="90" rx="8"/>
+  <text class="title" x="232" y="426">4. Risk aggregation</text>
+  <text class="label" x="232" y="448">risk = 1 − Π (1 − weight·confidence)  ← probability-of-any</text>
+  <text class="small" x="232" y="470">LOW &lt; 0.30 ≤ MEDIUM &lt; 0.65 ≤ HIGH · saturates gracefully at 1.0</text>
+
+  <!-- Output -->
+  <rect class="out" x="220" y="540" width="500" height="120" rx="8"/>
+  <text class="title" x="232" y="566">5. RiskReport (JSON)</text>
+  <text class="label" x="232" y="586">risk_level: LOW / MEDIUM / HIGH</text>
+  <text class="label" x="232" y="603">risk_score, signals[] (sorted by severity)</text>
+  <text class="label" x="232" y="620">extracted_fields, processing_ms</text>
+  <text class="small" x="232" y="642">→ Flask response · forwarded to mocked UI dashboard</text>
+
+  <!-- Arrows top row -->
+  <path class="arrow" d="M 220 117 L 278 117"/>
+  <path class="arrow" d="M 500 117 L 558 117"/>
+
+  <!-- Splitter from row 1 → detectors row -->
+  <path class="arrow" d="M 670 154 L 670 180 L 130 180 L 130 218"/>
+  <path class="arrow" d="M 670 154 L 670 180 L 370 180 L 370 218"/>
+  <path class="arrow" d="M 670 154 L 670 218"/>
+  <path class="arrow" d="M 670 154 L 670 180 L 820 180 L 820 218"/>
+
+  <!-- Detectors → aggregator -->
+  <path class="arrow" d="M 130 340 L 130 380 L 380 380 L 380 398"/>
+  <path class="arrow" d="M 370 340 L 370 380 L 440 380 L 440 398"/>
+  <path class="arrow" d="M 600 340 L 600 380 L 500 380 L 500 398"/>
+  <path class="arrow" d="M 820 340 L 820 380 L 560 380 L 560 398"/>
+
+  <!-- Aggregator → output -->
+  <path class="arrow" d="M 470 490 L 470 538"/>
+</svg>

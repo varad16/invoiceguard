@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', Helvetica, sans-serif">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7f8fb"/>
+      <stop offset="100%" stop-color="#eef0f5"/>
+    </linearGradient>
+    <filter id="shadow3" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.08"/>
+    </filter>
+    <linearGradient id="highBanner" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c84a4a"/>
+      <stop offset="100%" stop-color="#a83a3a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg3)"/>
+
+  <!-- Top nav -->
+  <rect x="0" y="0" width="1200" height="64" fill="#ffffff" stroke="#e4e7ee"/>
+  <circle cx="36" cy="32" r="14" fill="#1f2740"/>
+  <path d="M 30 27 L 36 23 L 42 27 L 42 37 L 30 37 z" fill="#fff"/>
+  <text x="64" y="38" font-size="17" font-weight="700" fill="#101010">InvoiceGuard</text>
+  <text x="190" y="38" font-size="12" fill="#888">/ risk report · invoice_id=8f3c91</text>
+
+  <!-- HIGH RISK banner -->
+  <rect x="40" y="96" width="1120" height="76" rx="12" fill="url(#highBanner)"/>
+  <text x="64" y="128" font-size="11" font-weight="700" fill="#ffd0d0" letter-spacing="2">RISK LEVEL</text>
+  <text x="64" y="160" font-size="32" font-weight="800" fill="#ffffff">HIGH</text>
+  <text x="200" y="128" font-size="11" font-weight="700" fill="#ffd0d0" letter-spacing="2">SCORE</text>
+  <text x="200" y="160" font-size="32" font-weight="800" fill="#ffffff">0.91 / 1.00</text>
+  <text x="360" y="128" font-size="11" font-weight="700" fill="#ffd0d0" letter-spacing="2">SIGNALS</text>
+  <text x="360" y="160" font-size="32" font-weight="800" fill="#ffffff">3</text>
+  <text x="460" y="128" font-size="11" font-weight="700" fill="#ffd0d0" letter-spacing="2">PROCESSING TIME</text>
+  <text x="460" y="160" font-size="32" font-weight="800" fill="#ffffff">1.84s</text>
+  <!-- Action buttons -->
+  <rect x="940" y="118" width="100" height="36" rx="18" fill="#ffffff"/>
+  <text x="990" y="140" font-size="12" font-weight="700" fill="#c84a4a" text-anchor="middle">Reject</text>
+  <rect x="1050" y="118" width="100" height="36" rx="18" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="1100" y="140" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Escalate</text>
+
+  <!-- Signals panel -->
+  <g filter="url(#shadow3)">
+    <rect x="40" y="196" width="700" height="660" rx="14" fill="#ffffff"/>
+  </g>
+  <text x="60" y="226" font-size="11" font-weight="700" fill="#888" letter-spacing="1.5">FRAUD SIGNALS · sorted by severity</text>
+
+  <!-- Signal 1: GPT-4V FONT_INCONSISTENCY -->
+  <rect x="56" y="240" width="668" height="142" rx="10" fill="#fdf3f3" stroke="#f1c0c0"/>
+  <rect x="68" y="252" width="62" height="18" rx="9" fill="#c84a4a"/>
+  <text x="99" y="265" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">GPT-4V</text>
+  <text x="140" y="265" font-size="11" fill="#888">score 0.81</text>
+  <text x="660" y="265" font-size="10" font-weight="700" fill="#c84a4a" text-anchor="end">SEVERITY 0.85 · CONFIDENCE 0.95</text>
+  <text x="68" y="294" font-size="15" font-weight="700" fill="#101010">FONT_INCONSISTENCY</text>
+  <text x="68" y="318" font-size="12" fill="#3a3a3a">The "5" in the TOTAL amount "$15,000.00" is rendered in</text>
+  <text x="68" y="335" font-size="12" fill="#3a3a3a">a different typeface and slightly italicized compared to the surrounding</text>
+  <text x="68" y="352" font-size="12" fill="#3a3a3a">digits — consistent with a single-character edit of the original "$1,500.00".</text>
+  <text x="68" y="371" font-size="11" fill="#888">→ TOTAL row, bottom-right of the invoice</text>
+
+  <!-- Signal 2: ELA -->
+  <rect x="56" y="395" width="668" height="124" rx="10" fill="#fff5f0" stroke="#e8b890"/>
+  <rect x="68" y="407" width="36" height="18" rx="9" fill="#c98a26"/>
+  <text x="86" y="420" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">ELA</text>
+  <text x="114" y="420" font-size="11" fill="#888">score 0.63</text>
+  <text x="660" y="420" font-size="10" font-weight="700" fill="#c98a26" text-anchor="end">SEVERITY 0.70 · CONFIDENCE 0.90</text>
+  <text x="68" y="449" font-size="15" font-weight="700" fill="#101010">ELA_LOCAL_REGION_EDITED</text>
+  <text x="68" y="473" font-size="12" fill="#3a3a3a">Error Level Analysis found a localized region with 8.2% high-error pixels</text>
+  <text x="68" y="490" font-size="12" fill="#3a3a3a">(peak intensity 134/255). Consistent with a region having been edited and re-saved.</text>
+  <text x="68" y="510" font-size="11" fill="#888">→ corroborates GPT-4V FONT_INCONSISTENCY finding</text>
+
+  <!-- Signal 3: Vendor -->
+  <rect x="56" y="532" width="668" height="118" rx="10" fill="#fff8ea" stroke="#e8d49a"/>
+  <rect x="68" y="544" width="60" height="18" rx="9" fill="#c98a26"/>
+  <text x="98" y="557" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">VENDOR</text>
+  <text x="138" y="557" font-size="11" fill="#888">score 0.30</text>
+  <text x="660" y="557" font-size="10" font-weight="700" fill="#c98a26" text-anchor="end">SEVERITY 0.50 · CONFIDENCE 0.60</text>
+  <text x="68" y="586" font-size="15" font-weight="700" fill="#101010">VENDOR_NO_ADDRESS</text>
+  <text x="68" y="610" font-size="12" fill="#3a3a3a">Vendor "Acme Corporation" invoice has no address extracted.</text>
+  <text x="68" y="627" font-size="12" fill="#3a3a3a">Address line on the original invoice may have been redacted or overwritten.</text>
+
+  <!-- Aggregation explanation -->
+  <rect x="56" y="668" width="668" height="170" rx="10" fill="#f4f5f8"/>
+  <text x="68" y="694" font-size="11" font-weight="700" fill="#666" letter-spacing="1.5">HOW WE GOT TO 0.91</text>
+  <text x="68" y="720" font-size="12" font-family="ui-monospace, monospace" fill="#1f2740">risk = 1 − (1−0.81)(1−0.63)(1−0.30)</text>
+  <text x="68" y="740" font-size="12" font-family="ui-monospace, monospace" fill="#1f2740">     = 1 − 0.19 · 0.37 · 0.70</text>
+  <text x="68" y="760" font-size="12" font-family="ui-monospace, monospace" fill="#1f2740">     = 1 − 0.049 = 0.951 → capped at component scores</text>
+  <text x="68" y="788" font-size="11" fill="#666">Probability-of-any aggregator — any one strong signal pushes the score up sharply;</text>
+  <text x="68" y="803" font-size="11" fill="#666">multiple moderate signals stack without overflow. Saturates gracefully at 1.0.</text>
+  <text x="68" y="826" font-size="11" font-weight="700" fill="#1f2740">→ Threshold for HIGH is 0.65; this invoice clears that by a large margin.</text>
+
+  <!-- Extracted fields panel -->
+  <g filter="url(#shadow3)">
+    <rect x="760" y="196" width="400" height="350" rx="14" fill="#ffffff"/>
+  </g>
+  <text x="780" y="226" font-size="11" font-weight="700" fill="#888" letter-spacing="1.5">EXTRACTED FIELDS · LayoutLMv3</text>
+
+  <text x="780" y="262" font-size="10" font-weight="700" fill="#666">VENDOR</text>
+  <text x="780" y="282" font-size="13" fill="#101010">Acme Corporation</text>
+
+  <text x="780" y="312" font-size="10" font-weight="700" fill="#666">TAX ID</text>
+  <text x="780" y="332" font-size="13" fill="#101010">12-3456780  ✓ valid</text>
+
+  <text x="780" y="362" font-size="10" font-weight="700" fill="#666">INVOICE #</text>
+  <text x="780" y="382" font-size="13" fill="#101010">INV-2024-0042</text>
+
+  <text x="780" y="412" font-size="10" font-weight="700" fill="#666">INVOICE DATE</text>
+  <text x="780" y="432" font-size="13" fill="#101010">April 15, 2024</text>
+
+  <text x="780" y="462" font-size="10" font-weight="700" fill="#666">TOTAL</text>
+  <text x="780" y="486" font-size="20" font-weight="700" fill="#c84a4a">$15,000.00</text>
+  <text x="780" y="504" font-size="11" fill="#888">Original may have been $1,500.00 — see GPT-4V finding.</text>
+
+  <text x="780" y="532" font-size="10" font-weight="700" fill="#666">CURRENCY</text>
+  <text x="858" y="532" font-size="11" fill="#101010">USD</text>
+
+  <!-- Recommended actions panel -->
+  <g filter="url(#shadow3)">
+    <rect x="760" y="566" width="400" height="290" rx="14" fill="#ffffff"/>
+  </g>
+  <text x="780" y="596" font-size="11" font-weight="700" fill="#888" letter-spacing="1.5">RECOMMENDED ACTIONS</text>
+
+  <!-- Step 1 -->
+  <circle cx="788" cy="628" r="10" fill="#c84a4a"/>
+  <text x="788" y="632" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+  <text x="810" y="632" font-size="13" font-weight="600" fill="#101010">Reject payment</text>
+  <text x="810" y="650" font-size="11" fill="#666">Two corroborating tamper signals on the TOTAL field.</text>
+
+  <!-- Step 2 -->
+  <circle cx="788" cy="678" r="10" fill="#c98a26"/>
+  <text x="788" y="682" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+  <text x="810" y="682" font-size="13" font-weight="600" fill="#101010">Verify with vendor directly</text>
+  <text x="810" y="700" font-size="11" fill="#666">Call Acme AR using the directory phone — not the invoice's contact.</text>
+
+  <!-- Step 3 -->
+  <circle cx="788" cy="728" r="10" fill="#1f2740"/>
+  <text x="788" y="732" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">3</text>
+  <text x="810" y="732" font-size="13" font-weight="600" fill="#101010">Request unedited PDF source</text>
+  <text x="810" y="750" font-size="11" fill="#666">Original from the vendor's billing system, not a forwarded copy.</text>
+
+  <!-- Step 4 -->
+  <circle cx="788" cy="778" r="10" fill="#1f2740"/>
+  <text x="788" y="782" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">4</text>
+  <text x="810" y="782" font-size="13" font-weight="600" fill="#101010">Log to audit trail</text>
+  <text x="810" y="800" font-size="11" fill="#666">Mark invoice_id=8f3c91 for quarterly review.</text>
+
+  <text x="780" y="838" font-size="10" fill="#888">Generated by InvoiceGuard · auditor review required before final action</text>
+</svg>

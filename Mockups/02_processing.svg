@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', Helvetica, sans-serif">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7f8fb"/>
+      <stop offset="100%" stop-color="#eef0f5"/>
+    </linearGradient>
+    <filter id="shadow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg2)"/>
+
+  <!-- Top nav -->
+  <rect x="0" y="0" width="1200" height="64" fill="#ffffff" stroke="#e4e7ee"/>
+  <circle cx="36" cy="32" r="14" fill="#1f2740"/>
+  <path d="M 30 27 L 36 23 L 42 27 L 42 37 L 30 37 z" fill="#fff"/>
+  <text x="64" y="38" font-size="17" font-weight="700" fill="#101010">InvoiceGuard</text>
+  <text x="190" y="38" font-size="12" fill="#888">/ analyzing tampered_acme.jpg</text>
+
+  <!-- Heading -->
+  <text x="40" y="116" font-size="22" font-weight="700" fill="#101010">Analyzing tampered_acme.jpg</text>
+  <text x="40" y="138" font-size="13" fill="#666">Running 4 detectors in parallel. Expected wall time: ~2 seconds.</text>
+
+  <!-- Preview panel (left) -->
+  <g filter="url(#shadow2)">
+    <rect x="40" y="170" width="500" height="540" rx="14" fill="#ffffff"/>
+  </g>
+  <text x="60" y="200" font-size="11" font-weight="700" fill="#888" letter-spacing="1.5">INVOICE PREVIEW</text>
+
+  <!-- Simulated invoice rendering -->
+  <g transform="translate(70, 220)">
+    <rect width="440" height="468" rx="6" fill="#fdfdfd" stroke="#e4e7ee"/>
+    <!-- Header band -->
+    <rect x="20" y="20" width="180" height="34" rx="4" fill="#eef0f5"/>
+    <text x="30" y="42" font-size="13" font-weight="700" fill="#1f2740">ACME CORPORATION</text>
+    <text x="30" y="70" font-size="10" fill="#666">123 Industry Way, San Francisco, CA</text>
+    <text x="30" y="84" font-size="10" fill="#666">Tax ID: 12-3456780</text>
+
+    <!-- Invoice meta -->
+    <text x="280" y="42" font-size="11" fill="#888">INVOICE</text>
+    <text x="280" y="60" font-size="12" fill="#1f2740">#INV-2024-0042</text>
+    <text x="280" y="78" font-size="10" fill="#666">Date: 2024-04-15</text>
+
+    <!-- Line items table header -->
+    <rect x="20" y="120" width="400" height="22" fill="#f4f5f8"/>
+    <text x="28" y="135" font-size="10" font-weight="700" fill="#444">DESCRIPTION</text>
+    <text x="290" y="135" font-size="10" font-weight="700" fill="#444">QTY</text>
+    <text x="330" y="135" font-size="10" font-weight="700" fill="#444">RATE</text>
+    <text x="380" y="135" font-size="10" font-weight="700" fill="#444">TOTAL</text>
+
+    <!-- Line items -->
+    <text x="28" y="160" font-size="10" fill="#1f2740">Consulting hours, March</text>
+    <text x="290" y="160" font-size="10" fill="#1f2740">10</text>
+    <text x="330" y="160" font-size="10" fill="#1f2740">$125</text>
+    <text x="380" y="160" font-size="10" fill="#1f2740">$1,250.00</text>
+
+    <text x="28" y="180" font-size="10" fill="#1f2740">Tax (9%)</text>
+    <text x="380" y="180" font-size="10" fill="#1f2740">$112.50</text>
+
+    <!-- Total row with HIGHLIGHTED tampered region -->
+    <rect x="20" y="200" width="400" height="32" fill="#fffaeb" stroke="#f1c64a" stroke-width="1.5"/>
+    <text x="28" y="221" font-size="13" font-weight="700" fill="#101010">TOTAL DUE</text>
+    <!-- Original portion of the number rendered cleanly -->
+    <text x="350" y="221" font-size="13" font-weight="700" fill="#101010">$1</text>
+    <!-- "Tampered" digit — different font / slight misalignment -->
+    <text x="362" y="221" font-size="14" font-weight="700" fill="#101010" font-family="Courier" font-style="italic">5</text>
+    <text x="375" y="221" font-size="13" font-weight="700" fill="#101010">,000.00</text>
+
+    <!-- Annotation arrow + label -->
+    <path d="M 365 240 L 365 260 L 250 260" stroke="#c84a4a" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/>
+    <text x="246" y="263" font-size="10" font-weight="700" fill="#c84a4a" text-anchor="end">Suspect digit</text>
+
+    <!-- ELA heatmap overlay legend -->
+    <rect x="20" y="290" width="400" height="160" fill="#0a0a18" rx="6"/>
+    <text x="30" y="312" font-size="10" font-weight="700" fill="#9aa3b2">ELA HEATMAP</text>
+    <!-- Black background with bright spot over the tampered region -->
+    <rect x="320" y="324" width="80" height="24" fill="#ff9a3a" opacity="0.85" rx="2"/>
+    <rect x="328" y="328" width="50" height="14" fill="#ffd060" opacity="0.95" rx="2"/>
+    <!-- Faint noise elsewhere -->
+    <circle cx="80" cy="370" r="3" fill="#2a3548"/>
+    <circle cx="160" cy="400" r="2" fill="#2a3548"/>
+    <circle cx="230" cy="380" r="3" fill="#2a3548"/>
+    <text x="30" y="445" font-size="10" fill="#7aa0d8">Bright region = recompressed once vs. surrounding pristine pixels</text>
+  </g>
+
+  <!-- Detector status panel (right) -->
+  <g filter="url(#shadow2)">
+    <rect x="560" y="170" width="600" height="540" rx="14" fill="#ffffff"/>
+  </g>
+  <text x="580" y="200" font-size="11" font-weight="700" fill="#888" letter-spacing="1.5">DETECTOR STATUS</text>
+
+  <!-- LayoutLMv3 — done -->
+  <rect x="576" y="216" width="568" height="66" rx="10" fill="#f3f7f4" stroke="#cfe0d3"/>
+  <circle cx="600" cy="249" r="10" fill="#3a8a5a"/>
+  <path d="M 595 249 L 599 253 L 606 245" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="624" y="244" font-size="14" font-weight="600" fill="#101010">LayoutLMv3 field extraction</text>
+  <text x="624" y="262" font-size="11" fill="#666">vendor, total ($15,000.00), invoice #, date — 312 ms</text>
+  <text x="1118" y="248" font-size="11" font-weight="700" fill="#3a8a5a" text-anchor="end">DONE</text>
+
+  <!-- ELA — done with finding -->
+  <rect x="576" y="294" width="568" height="66" rx="10" fill="#fff5f5" stroke="#f1c0c0"/>
+  <circle cx="600" cy="327" r="10" fill="#c84a4a"/>
+  <text x="600" y="332" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">!</text>
+  <text x="624" y="322" font-size="14" font-weight="600" fill="#101010">Error Level Analysis</text>
+  <text x="624" y="340" font-size="11" fill="#c84a4a">localized high-error region detected (top-right) — 47 ms</text>
+  <text x="1118" y="326" font-size="11" font-weight="700" fill="#c84a4a" text-anchor="end">FLAG</text>
+
+  <!-- GPT-4V — in progress -->
+  <rect x="576" y="372" width="568" height="66" rx="10" fill="#fffaf2" stroke="#e8d49a"/>
+  <circle cx="600" cy="405" r="10" fill="none" stroke="#c98a26" stroke-width="2" stroke-dasharray="6 4">
+    <animateTransform attributeName="transform" type="rotate" from="0 600 405" to="360 600 405" dur="1.4s" repeatCount="indefinite"/>
+  </circle>
+  <text x="624" y="400" font-size="14" font-weight="600" fill="#101010">GPT-4V visual inspection</text>
+  <text x="624" y="418" font-size="11" fill="#666">analyzing font consistency, logo quality, pixel artifacts…</text>
+  <text x="1118" y="404" font-size="11" font-weight="700" fill="#c98a26" text-anchor="end">RUNNING</text>
+
+  <!-- Duplicate — done, no match -->
+  <rect x="576" y="450" width="568" height="66" rx="10" fill="#f3f7f4" stroke="#cfe0d3"/>
+  <circle cx="600" cy="483" r="10" fill="#3a8a5a"/>
+  <path d="M 595 483 L 599 487 L 606 479" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="624" y="478" font-size="14" font-weight="600" fill="#101010">Duplicate check</text>
+  <text x="624" y="496" font-size="11" fill="#666">no SHA-256 match · no fuzzy match against 1,024 priors — 8 ms</text>
+  <text x="1118" y="482" font-size="11" font-weight="700" fill="#3a8a5a" text-anchor="end">CLEAR</text>
+
+  <!-- Vendor — done with finding -->
+  <rect x="576" y="528" width="568" height="66" rx="10" fill="#f3f7f4" stroke="#cfe0d3"/>
+  <circle cx="600" cy="561" r="10" fill="#3a8a5a"/>
+  <path d="M 595 561 L 599 565 L 606 557" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="624" y="556" font-size="14" font-weight="600" fill="#101010">Vendor verification</text>
+  <text x="624" y="574" font-size="11" fill="#666">Acme Corporation matches directory · tax ID valid — 3 ms</text>
+  <text x="1118" y="560" font-size="11" font-weight="700" fill="#3a8a5a" text-anchor="end">CLEAR</text>
+
+  <!-- Aggregator preview -->
+  <rect x="576" y="612" width="568" height="78" rx="10" fill="#1f2740"/>
+  <text x="592" y="638" font-size="11" font-weight="700" fill="#9aa3b2" letter-spacing="1.5">INTERIM RISK</text>
+  <rect x="592" y="652" width="380" height="10" rx="5" fill="#2c3a5c"/>
+  <rect x="592" y="652" width="240" height="10" rx="5" fill="#c98a26"/>
+  <text x="980" y="662" font-size="11" font-weight="700" fill="#c98a26">0.62 / 1.00</text>
+  <text x="592" y="682" font-size="11" fill="#9aa3b2">1 signal so far · GPT-4V still running, may push to HIGH</text>
+</svg>

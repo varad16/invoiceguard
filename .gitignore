@@ -1,0 +1,30 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local artifacts
+sample_invoices/*.jpg
+sample_invoices/*.jpeg
+sample_invoices/*.png
+sample_invoices/*.pdf
+!sample_invoices/.gitkeep
+benchmarks/eval_results.json
+
+# Secrets
+.env
+.env.local
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+*.swp
