@@ -217,8 +217,6 @@ One additional test (`test_gpt4v_live_smoke`) is skipped unless `OPENAI_API_KEY`
 
 ## What we cut for the hackathon
 
-(Documented honestly so reviewers can see the project's scope.)
-
 - **No fine-tuned LayoutLMv3.** We use the off-the-shelf `microsoft/layoutlmv3-base` checkpoint, which doesn't natively predict our schema. With a labeled invoice dataset (Sparrow, ICDAR SROIE), we'd fine-tune the token classification head for ~5-10% absolute field-extraction accuracy lift.
 - **No UI shipped.** Postman-tested API only. The mockups above show the intended dashboard design.
 - **No feedback loop.** Auditors can't mark false positives to improve scoring over time. Would be added behind a `/feedback` endpoint that updates per-signal weight priors.
